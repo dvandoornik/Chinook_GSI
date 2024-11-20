@@ -19,22 +19,22 @@ setwd("YOUR_PATH")
 # which causes a problem; It may be better to just change all "-" to "_"
 # Code to import baseline files for GAPS RGs
 
-Coastwide_49Loci_MsGSI_Input <- read.csv("YOUR_PATH/Coastwide_49Loci_MsGSI_Input.csv")
-Coastwide_49RGs_pop_info <- read.csv("YOUR_PATH/Coastwide_49RGs_pop_info.csv")
-Northern_98loci_32RGs_MsGSI_Input <- read.csv("YOUR_PATH/Northern_98loci_32RGs_MsGSI_Input.csv")
-Northern_32RGs_pop_info <- read.csv("YOUR_PATH/Northern_32RGs_pop_info.csv")
-Columbia_178loci_10RGs_MsGSI_Input <- read.csv("YOUR_PATH/Columbia_178loci_10RGs_MsGSI_Input.csv")
-Columbia_178loci_pop_info <- read.csv("YOUR_PATH/Columbia_178loci_pop_info.csv")
-Southern_88loci_8RGs_MsGSI_Input <- read.csv("YOUR_PATH/Southern_88loci_8RGs_MsGSI_Input.csv")
-Southern_8RGs_pop_info <- read.csv("YOUR_PATH/Southern_8RGs_pop_info.csv")
+Coastwide_MsGSI_Input <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier1_Coastwide_Genotypes.csv")
+Coastwide_pop_info <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier1_Coastwide_pop_info.csv")
+Northern_MsGSI_Input <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Northern_Genotypes.csv")
+Northern_pop_info <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Northern_pop_info.csv")
+Columbia_MsGSI_Input <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Columbia_Genotypes.csv")
+Columbia_pop_info <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Columbia_pop_info.csv")
+Southern_MsGSI_Input <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Southern_Genotypes.csv")
+Southern_pop_info <- read.csv("YOUR_PATH/Chinook_SNP_Baseline_Tier2_Southern_pop_info.csv")
 
 # Run the file prep function; sub_groups can be the RGs in the Tier 2 baseline, but with the number designations in the tier 1 pop_info; 
 # sub_groups must be consecutive numbers begining with "1"
 # Replace "mixture_genos" with whatever you call your file of mixture genotypes
 
-msgsi_dat_northern <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_49Loci_MsGSI_Input, baseline2_data = Northern_98loci_32RGs_MsGSI_Input, pop1_info = Coastwide_49RGs_pop_info, pop2_info = Northern_32RGs_pop_info, sub_group = 1:32)
-msgsi_dat_columbia <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_49Loci_MsGSI_Input, baseline2_data = Columbia_178loci_10RGs_MsGSI_Input, pop1_info = Coastwide_49RGs_pop_info, pop2_info = Columbia_178loci_pop_info, sub_group = 33:41)
-msgsi_dat_southern <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_49Loci_MsGSI_Input, baseline2_data = Southern_88loci_8RGs_MsGSI_Input, pop1_info = Coastwide_49RGs_pop_info, pop2_info = Southern_8RGs_pop_info, sub_group = 42:49)
+msgsi_dat_northern <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_MsGSI_Input, baseline2_data = Northern_MsGSI_Input, pop1_info = Coastwide_pop_info, pop2_info = Northern_pop_info, sub_group = 1:32)
+msgsi_dat_columbia <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_MsGSI_Input, baseline2_data = Columbia_MsGSI_Input, pop1_info = Coastwide_pop_info, pop2_info = Columbia_pop_info, sub_group = 33:41)
+msgsi_dat_southern <- prep_msgsi_data(mixture_data = mixture_genos, baseline1_data = Coastwide_MsGSI_Input, baseline2_data = Southern_MsGSI_Input, pop1_info = Coastwide_pop_info, pop2_info = Southern_pop_info, sub_group = 42:49)
 
 # You can ignore warning messages about group names not being consistent between baselines if your Tier 2 baseline has RGs that are not in Tier 1
 # If you receive the error that dplyr can't find the column "locus" it's probably because of an incompatibility between your files' locus names
